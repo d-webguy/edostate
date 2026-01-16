@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDO STATE TAX REVENUE SYSTEM - Proposal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-4 md:p-8">
+    <div class="max-w-6xl mx-auto">
+        <!-- Header -->
+        <div class="bg-white rounded-lg shadow-lg p-8 mb-6">
+            <div class="text-center mb-6">
+                <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-2">
+                    EDO STATE TAX REVENUE SYSTEM
+                </h1>
+                <p class="text-gray-600 text-lg">Comprehensive Digital Transformation Proposal</p>
+            </div>
+            
+            <div class="bg-gradient-to-r from-green-600 to-green-700 rounded-lg p-6 text-white text-center">
+                <p class="text-sm uppercase tracking-wide mb-2">Total Project Investment</p>
+                <p class="text-5xl font-bold mb-2">₦600,000,000</p>
+                <p class="text-sm opacity-90">Six Hundred Million Naira Only</p>
+            </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="bg-white rounded-lg shadow-md mb-6 overflow-hidden">
+            <div class="flex overflow-x-auto">
+                <button onclick="switchTab('summary')" id="tab-summary" class="px-6 py-4 font-semibold whitespace-nowrap transition-colors bg-green-600 text-white">
+                    Executive Summary
+                </button>
+                <button onclick="switchTab('breakdown')" id="tab-breakdown" class="px-6 py-4 font-semibold whitespace-nowrap transition-colors bg-gray-100 text-gray-700 hover:bg-gray-200">
+                    Detailed Breakdown
+                </button>
+                <button onclick="switchTab('benefits')" id="tab-benefits" class="px-6 py-4 font-semibold whitespace-nowrap transition-colors bg-gray-100 text-gray-700 hover:bg-gray-200">
+                    Key Benefits
+                </button>
+            </div>
+        </div>
+
+        <!-- Content Area -->
+        <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+            <!-- Summary Tab -->
+            <div id="content-summary" class="tab-content">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Project Cost Summary</h2>
+                <div class="overflow-x-auto">
+                    <table class="w-full border-collapse">
+                        <thead>
+                            <tr class="bg-gray-100">
+                                <th class="text-left px-4 py-3 border-b-2 border-gray-300 font-semibold text-gray-700">Component</th>
+                                <th class="text-right px-4 py-3 border-b-2 border-gray-300 font-semibold text-gray-700">Amount (₦)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-4 py-3 border-b border-gray-200">Part 1: Complete Enterprise System Development</td>
+                                <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">320,000,000</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-4 py-3 border-b border-gray-200">Part 2: Security, Compliance & Independent Audits</td>
+                                <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">60,000,000</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-4 py-3 border-b border-gray-200">Part 3: Training, Change Management & Adoption</td>
+                                <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">45,000,000</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-4 py-3 border-b border-gray-200">Part 4: Documentation & Knowledge Transfer</td>
+                                <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">15,000,000</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-4 py-3 border-b border-gray-200">Part 5: 2-Year Hosting, Support & SLA</td>
+                                <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">110,000,000</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-4 py-3 border-b border-gray-200">Part 6: Project Management, QA & Governance</td>
+                                <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">25,000,000</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-4 py-3 border-b border-gray-200">Part 7: Strategic Risk & Contingency Buffer</td>
+                                <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">25,000,000</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr class="bg-green-50 font-bold">
+                                <td class="px-4 py-3 border-t-2 border-green-600">TOTAL</td>
+                                <td class="text-right px-4 py-3 border-t-2 border-green-600 font-mono text-green-700">₦600,000,000</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                
+                <div class="mt-8 grid md:grid-cols-3 gap-4">
+                    <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                        <h3 class="font-semibold text-blue-900 mb-2">Development</h3>
+                        <p class="text-2xl font-bold text-blue-700">₦320M</p>
+                        <p class="text-sm text-blue-600 mt-1">53% of budget</p>
+                    </div>
+                    <div class="bg-purple-50 p-4 rounded-lg border border-purple-200">
+                        <h3 class="font-semibold text-purple-900 mb-2">Operations (2 Years)</h3>
+                        <p class="text-2xl font-bold text-purple-700">₦110M</p>
+                        <p class="text-sm text-purple-600 mt-1">18% of budget</p>
+                    </div>
+                    <div class="bg-amber-50 p-4 rounded-lg border border-amber-200">
+                        <h3 class="font-semibold text-amber-900 mb-2">Training & Support</h3>
+                        <p class="text-2xl font-bold text-amber-700">₦145M</p>
+                        <p class="text-sm text-amber-600 mt-1">24% of budget</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Breakdown Tab -->
+            <div id="content-breakdown" class="tab-content hidden">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Detailed Cost Breakdown</h2>
+                
+                <!-- Part 1 -->
+                <div class="border border-gray-200 rounded-lg mb-4 overflow-hidden">
+                    <button onclick="toggleSection('section1')" class="w-full px-6 py-4 bg-gradient-to-r from-green-50 to-green-100 flex items-center justify-between hover:from-green-100 hover:to-green-200 transition-colors">
+                        <div class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-green-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                            <h3 class="text-lg font-semibold text-gray-800">Part 1: Enterprise System Development - ₦320M</h3>
+                        </div>
+                        <svg class="w-5 h-5 text-gray-600 chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div id="section1" class="px-6 py-4 bg-white">
+                        <h4 class="font-semibold text-gray-700 mb-3">A. Core Platform - ₦150M</h4>
+                        <table class="w-full border-collapse mb-6">
+                            <tbody>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-4 py-3 border-b border-gray-200">Web Platform (Citizen + Business Portal)</td>
+                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">55,000,000</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-4 py-3 border-b border-gray-200">USSD Platform (All Networks)</td>
+                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">45,000,000</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-4 py-3 border-b border-gray-200">Payment & Revenue Engine</td>
+                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">50,000,000</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="pl-4">
+                            <h5 class="font-semibold text-gray-600 mb-2">Web Platform Features:</h5>
+                            <ul class="list-disc list-inside text-gray-600 space-y-1 mb-4">
+                                <li>Citizen Portal</li>
+                                <li>Personal & business tax management</li>
+                                <li>Digital wallet & payment history</li>
+                                <li>Receipts & clearance certificates</li>
+                                <li>Compliance notifications</li>
+                            </ul>
+                            
+                            <h5 class="font-semibold text-gray-600 mb-2">USSD Platform Breakdown:</h5>
+                            <table class="w-full border-collapse mb-4">
+                                <tbody>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-4 py-2 border-b border-gray-200">USSD Core System</td>
+                                        <td class="text-right px-4 py-2 border-b border-gray-200 font-mono">15,000,000</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-4 py-2 border-b border-gray-200">MTN, Airtel, Glo, 9mobile Integration</td>
+                                        <td class="text-right px-4 py-2 border-b border-gray-200 font-mono">15,000,000</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-4 py-2 border-b border-gray-200">USSD Payment, History & Receipts</td>
+                                        <td class="text-right px-4 py-2 border-b border-gray-200 font-mono">15,000,000</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            
+                            <h5 class="font-semibold text-gray-600 mb-2">Payment Engine Components:</h5>
+                            <table class="w-full border-collapse">
+                                <tbody>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-4 py-2 border-b border-gray-200">Tax Calculation Engine</td>
+                                        <td class="text-right px-4 py-2 border-b border-gray-200 font-mono">12,000,000</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-4 py-2 border-b border-gray-200">Multi-Gateway Integration (Paystack, Flutterwave, Interswitch, Remita)</td>
+                                        <td class="text-right px-4 py-2 border-b border-gray-200 font-mono">15,000,000</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-4 py-2 border-b border-gray-200">Installment & Partial Payment Logic</td>
+                                        <td class="text-right px-4 py-2 border-b border-gray-200 font-mono">8,000,000</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-4 py-2 border-b border-gray-200">Automated Receipts & Reconciliation</td>
+                                        <td class="text-right px-4 py-2 border-b border-gray-200 font-mono">15,000,000</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h4 class="font-semibold text-gray-700 mb-3 mt-6">B. Admin & Government Dashboard - ₦85M</h4>
+                        <table class="w-full border-collapse mb-6">
+                            <tbody>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-4 py-3 border-b border-gray-200">Revenue Monitoring Dashboard</td>
+                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">20,000,000</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-4 py-3 border-b border-gray-200">Taxpayer Management System</td>
+                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">15,000,000</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-4 py-3 border-b border-gray-200">Transaction & Refund Management</td>
+                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">15,000,000</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-4 py-3 border-b border-gray-200">Advanced Analytics & Forecasting</td>
+                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">20,000,000</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-4 py-3 border-b border-gray-200">Role-Based Access & Audit Logs</td>
+                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">15,000,000</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h4 class="font-semibold text-gray-700 mb-3">C. Integration Suite - ₦85M</h4>
+                        <table class="w-full border-collapse">
+                            <tbody>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-4 py-3 border-b border-gray-200">Bank & NIBSS Integration (20+ Banks)</td>
+                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">30,000,000</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-4 py-3 border-b border-gray-200">Government Systems (FIRS, CAC, NIMC, State Systems)</td>
+                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">35,000,000</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-4 py-3 border-b border-gray-200">SMS, Email, OTP & Notification Services</td>
+                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">10,000,000</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-4 py-3 border-b border-gray-200">API Gateway & Integration Security</td>
+                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">10,000,000</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Part 2 -->
+                <div class="border border-gray-200 rounded-lg mb-4 overflow-hidden">
+                    <button onclick="toggleSection('section2')" class="w-full px-6 py-4 bg-gradient-to-r from-green-50 to-green-100 flex items-center justify-between hover:from-green-100 hover:to-green-200 transition-colors">
+                        <div class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-green-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                            </svg>
+                            <h3 class="text-lg font-semibold text-gray-800">Part 2: Security, Compliance & Audits - ₦60M</h3>
+                        </div>
+                        <svg class="w-5 h-5 text-gray-600 chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div id="section2" class="px-6 py-4 bg-white hidden">
+                        <table class="w-full border-collapse">
+                            <tbody>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-4 py-3 border-b border-gray-200">Security Infrastructure (WAF, DDoS, Encryption)</td>
+                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">20,000,000</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-4 py-3 border-b border-gray-200">NDPA & PCI-DSS Compliance Readiness</td>
+                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">15,000,000</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-4 py-3 border-b border-gray-200">Independent Penetration Testing & Audits</td>
+                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">15,000,000</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-4 py-3 border-b border-gray-200">Logging, Monitoring & Incident Response Setup</td>
+                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">10,000,000</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Part 3 -->
+                <div class="border border-gray-200 rounded-lg mb-4 overflow-hidden">
+                    <button onclick="toggleSection('section3')" class="w-full px-6 py-4 bg-gradient-to-r from-green-50 to-green-100 flex items-center justify-between hover:from-green-100 hover:to-green-200 transition-colors">
+                        <div class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-green-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                            </svg>
+                            <h3 class="text-lg font-semibold text-gray-800">Part 3: Training, Change Management & Adoption - ₦45M</h3>
+                        </div>
+                        <svg class="w-5 h-5 text-gray-600 chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div id="section3" class="px-6 py-4 bg-white hidden">
+                        <table class="w-full border-collapse">
+                            <tbody>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-4 py-3 border-b border-gray-200">Executive Briefings (Governor, Commissioners)</td>
+                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">5,000,000</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-4 py-3 border-b border-gray-200">Finance & Revenue Department Training</td>
+                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">10,000,000</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-4 py-3 border-b border-gray-200">LGA & Field Officers (All LGAs)</td>
+                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">15,000,000</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-4 py-3 border-b border-gray-200">IT & System Administrators</td>
+                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">10,000,000</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-4 py-3 border-b border-gray-200">Public Awareness & Adoption Materials</td>
+                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">5,000,000</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Part 4 -->
+                <div class="border border-gray-200 rounded-lg mb-4 overflow-hidden">
+                    <button onclick="toggleSection('section4')" class="w-full px-6 py-4 bg-gradient-to-r from-green-50 to-green-100 flex items-center justify-between hover:from-green-100 hover:to-green-200 transition-colors">
+                        <div class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-green-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                            </svg>
+                            <h3 class="text-lg font-semibold text-gray-800">Part 4: Documentation & Knowledge Transfer - ₦15M</h3>
+                        </div>
+                        <svg class="w-5 h-5 text-gray-600 chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div id="section4" class="px-6 py-4 bg-white hidden">
+                        <table class="w-full border-collapse">
+                            <tbody>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-4 py-3 border-b border-gray-200">Technical Architecture & API Documentation</td>
+                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">5,000,000</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-4 py-3 border-b border-gray-200">Admin & Operations Manuals</td>
+                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">4,000,000</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-4 py-3 border-b border-gray-200">Citizen & USSD User Guides</td>
+                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">3,000,000</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-4 py-3 border-b border-gray-200">Video Tutorials & E-Learning Content</td>
+                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">3,000,000</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Part 5 -->
+                <div class="border border-gray-200 rounded-lg mb-4 overflow-hidden">
+                    <button onclick="toggleSection('section5')" class="w-full px-6 py-4 bg-gradient-to-r from-green-50 to-green-100 flex items-center justify-between hover:from-green-100 hover:to-green-200 transition-colors">
+                        <div class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-green-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path>
+                            </svg>
+                            <h3 class="text-lg font-semibold text-gray-800">Part 5: 2-Year Hosting, Support & SLA - ₦110M</h3>
+                        </div>
+                        <svg class="w-5 h-5 text-gray-600 chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div id="section5" class="px-6 py-4 bg-white hidden">
+                        <table class="w-full border-collapse">
+                            <tbody>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-4 py-3 border-b border-gray-200">Cloud Hosting (High Availability)</td>
+                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">45,000,000</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-4 py-3 border-b border-gray-200">USSD & SMS Services</td>
+                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">25,000,000</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-4 py-3 border-b border-gray-200">24/7 Helpdesk & Support Team</td>
+                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">25,000,000</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-4 py-3 border-b border-gray-200">Disaster Recovery & Backups</td>
+                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">15,000,000</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Part 6 -->
+                <div class="border border-gray-200 rounded-lg mb-4 overflow-hidden">
+                    <button onclick="toggleSection('section6')" class="w-full px-6 py-4 bg-gradient-to-r from-green-50 to-green-100 flex items-center justify-between hover:from-green-100 hover:to-green-200 transition-colors">
+                        <div class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-green-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <h3 class="text-lg font-semibold text-gray-800">Part 6: Project Management, QA & Governance - ₦25M</h3>
+                        </div>
+                        <svg class="w-5 h-5 text-gray-600 chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div id="section6" class="px-6 py-4 bg-white hidden">
+                        <table class="w-full border-collapse">
+                            <tbody>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-4 py-3 border-b border-gray-200">Project Management & Governance</td>
+                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">12,000,000</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-4 py-3 border-b border-gray-200">Quality Assurance & Testing</td>
+                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">13,000,000</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Part 7 -->
+                <div class="border border-gray-200 rounded-lg mb-4 overflow-hidden">
+                    <button onclick="toggleSection('section7')" class="w-full px-6 py-4 bg-gradient-to-r from-green-50 to-green-100 flex items-center justify-between hover:from-green-100 hover:to-green-200 transition-colors">
+                        <div class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-green-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                            </svg>
+                            <h3 class="text-lg font-semibold text-gray-800">Part 7: Strategic Risk & Contingency Buffer - ₦25M</h3>
+                        </div>
+                        <svg class="w-5 h-5 text-gray-600 chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div id="section7" class="px-6 py-4 bg-white hidden">
+                        <div class="text-gray-600">
+                            <p class="mb-2">This buffer accounts for:</p>
+                            <ul class="list-disc list-inside space-y-1">
+                                <li>Regulatory changes during implementation</li>
+                                <li>Scope adjustments based on stakeholder feedback</li>
+                                <li>Political and operational risk mitigation</li>
+                                <li>Unforeseen technical challenges</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Benefits Tab -->
+            <div id="content-benefits" class="tab-content hidden">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Key Benefits & Value Proposition</h2>
+                
+                <div class="space-y-6">
+                    <div class="bg-green-50 border-l-4 border-green-600 p-4 rounded">
+                        <h3 class="font-bold text-green-900 mb-2">Revenue Optimization</h3>
+                        <p class="text-gray-700">Automated tax collection with multi-channel access (web, USSD, mobile) increases compliance and reduces revenue leakage.</p>
+                    </div>
+
+                    <div class="bg-blue-50 border-l-4 border-blue-600 p-4 rounded">
+                        <h3 class="font-bold text-blue-900 mb-2">Transparency & Accountability</h3>
+                        <p class="text-gray-700">Real-time dashboards, audit trails, and automated reconciliation ensure full visibility of all transactions.</p>
+                    </div>
+
+                    <div class="bg-purple-50 border-l-4 border-purple-600 p-4 rounded">
+                        <h3 class="font-bold text-purple-900 mb-2">Citizen Convenience</h3>
+                        <p class="text-gray-700">24/7 access via web and USSD platforms with instant receipts and payment confirmations.</p>
+                    </div>
+
+                    <div class="bg-amber-50 border-l-4 border-amber-600 p-4 rounded">
+                        <h3 class="font-bold text-amber-900 mb-2">Comprehensive Coverage</h3>
+                        <p class="text-gray-700">Includes everything from development to 2-year support, training for all stakeholders, and full documentation.</p>
+                    </div>
+
+                    <div class="bg-red-50 border-l-4 border-red-600 p-4 rounded">
+                        <h3 class="font-bold text-red-900 mb-2">Enterprise Security</h3>
+                        <p class="text-gray-700">Bank-grade security with NDPA compliance, regular penetration testing, and disaster recovery protocols.</p>
+                    </div>
+
+                    <div class="bg-indigo-50 border-l-4 border-indigo-600 p-4 rounded">
+                        <h3 class="font-bold text-indigo-900 mb-2">Seamless Integration</h3>
+                        <p class="text-gray-700">Connects with FIRS, CAC, NIMC, 20+ banks, and all major payment gateways for complete ecosystem coverage.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="mt-6 bg-white rounded-lg shadow-md p-6 text-center text-gray-600">
+            <p class="text-sm">This proposal is valid for 90 days from date of submission</p>
+            <p class="text-xs mt-2">© 2026 - Edo State Tax Revenue System Proposal</p>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(tab) {
+            // Hide all content
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('[id^="tab-"]').forEach(el => {
+                el.classList.remove('bg-green-600', 'text-white');
+                el.classList.add('bg-gray-100', 'text-gray-700', 'hover:bg-gray-200');
+            });
+            
+            // Show selected content
+            document.getElementById('content-' + tab).classList.remove('hidden');
+            
+            // Add active class to selected tab
+            const activeTab = document.getElementById('tab-' + tab);
+            activeTab.classList.add('bg-green-600', 'text-white');
+            activeTab.classList.remove('bg-gray-100', 'text-gray-700', 'hover:bg-gray-200');
+        }
+
+        function toggleSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            const button = section.previousElementSibling;
+            const chevron = button.querySelector('.chevron');
+            
+            if (section.classList.contains('hidden')) {
+                section.classList.remove('hidden');
+                chevron.style.transform = 'rotate(180deg)';
+            } else {
+                section.classList.add('hidden');
+                chevron.style.transform = 'rotate(0deg)';
+            }
+        }
+    </script>
+</body>
+</html>
