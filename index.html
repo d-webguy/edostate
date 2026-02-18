@@ -1,538 +1,1407 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EDO STATE TAX REVENUE SYSTEM - Proposal</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edo State Tax Revenue System – ₦1.7B Budget</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green:        #1A6B3A;
+    --green-dark:   #0F4526;
+    --green-mid:    #1E7D44;
+    --green-light:  #27AE60;
+    --green-pale:   #E8F5EE;
+    --green-pale2:  #D4EDE0;
+    --white:        #FFFFFF;
+    --off-white:    #F7FAF8;
+    --text:         #0D1F15;
+    --text-mid:     #2C5038;
+    --text-muted:   #4A7A5E;
+    --text-dim:     #7AAD8A;
+    --border:       rgba(26,107,58,0.15);
+    --border-dark:  rgba(26,107,58,0.3);
+    --shadow:       0 4px 32px rgba(26,107,58,0.12);
+    --shadow-lg:    0 12px 48px rgba(26,107,58,0.18);
+    --gold:         #B8860B;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--off-white);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 200;
+    background: var(--green-dark);
+    border-bottom: 3px solid var(--green-light);
+    padding: 0 clamp(20px, 5vw, 80px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 62px;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.2);
+  }
+
+  .nav-flag {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .flag-strip {
+    display: flex;
+    height: 28px;
+    width: 42px;
+    border-radius: 3px;
+    overflow: hidden;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.3);
+    flex-shrink: 0;
+  }
+
+  .flag-strip .g { background: var(--green-light); flex: 1; }
+  .flag-strip .w { background: var(--white); flex: 1; }
+
+  .nav-logo {
+    height: 38px;
+    width: auto;
+    flex-shrink: 0;
+    opacity: 0.92;
+  }
+
+  .nav-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(13px, 2vw, 16px);
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 0.02em;
+  }
+
+  .nav-brand span { color: var(--green-light); }
+
+  .nav-links {
+    display: flex;
+    gap: clamp(12px, 2.5vw, 28px);
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    font-family: 'DM Mono', monospace;
+    transition: color 0.2s;
+    padding: 4px 0;
+    border-bottom: 1px solid transparent;
+  }
+
+  .nav-links a:hover, .nav-links a.active {
+    color: var(--white);
+    border-bottom-color: var(--green-light);
+  }
+
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+    padding: 4px;
+  }
+
+  .nav-toggle span {
+    display: block; width: 22px; height: 2px;
+    background: var(--white);
+    transition: all 0.3s;
+    border-radius: 2px;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    background: var(--green-dark);
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(100px, 12vw, 140px) clamp(24px, 6vw, 100px) clamp(60px, 8vw, 100px);
+    overflow: hidden;
+  }
+
+  /* Nigerian flag stripes background decoration */
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 38%;
+    height: 100%;
+    background: var(--white);
+    clip-path: polygon(8% 0, 100% 0, 100% 100%, 0% 100%);
+    opacity: 0.04;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--green-light) 0%, var(--green-light) 33.3%, var(--white) 33.3%, var(--white) 66.6%, var(--green-light) 66.6%, var(--green-light) 100%);
+  }
+
+  /* Big decorative flag */
+  .hero-flag-deco {
+    position: absolute;
+    right: clamp(30px, 6vw, 100px);
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    height: clamp(160px, 22vw, 300px);
+    width: clamp(108px, 15vw, 200px);
+    border-radius: 4px;
+    overflow: hidden;
+    opacity: 0.12;
+    box-shadow: 0 0 80px rgba(39,174,96,0.3);
+  }
+
+  .hero-flag-deco .g { background: var(--green-light); flex: 1; }
+  .hero-flag-deco .w { background: var(--white); flex: 1; }
+
+  .hero-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.2s forwards;
+  }
+
+  .hero-eyebrow-line {
+    width: 36px; height: 2px;
+    background: var(--green-light);
+    border-radius: 2px;
+  }
+
+  .hero-eyebrow-text {
+    font-family: 'DM Mono', monospace;
+    font-size: clamp(10px, 1.4vw, 12px);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--green-light);
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(38px, 7vw, 90px);
+    font-weight: 900;
+    line-height: 1.0;
+    color: var(--white);
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.35s forwards;
+  }
+
+  .hero-title em {
+    font-style: normal;
+    color: var(--green-light);
+    display: block;
+  }
+
+  .hero-desc {
+    font-size: clamp(14px, 1.8vw, 17px);
+    color: rgba(255,255,255,0.55);
+    max-width: 520px;
+    font-weight: 300;
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.5s forwards;
+  }
+
+  .hero-budget-box {
+    display: inline-flex;
+    flex-direction: column;
+    background: var(--green-mid);
+    border: 1px solid rgba(39,174,96,0.4);
+    border-left: 5px solid var(--green-light);
+    padding: clamp(20px, 3vw, 28px) clamp(24px, 4vw, 40px);
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.65s forwards;
+  }
+
+  .hero-budget-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--green-light);
+    margin-bottom: 6px;
+  }
+
+  .hero-budget-amount {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(30px, 5vw, 58px);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1;
+  }
+
+  .hero-budget-sub {
+    font-size: clamp(12px, 1.5vw, 14px);
+    color: rgba(255,255,255,0.45);
+    margin-top: 6px;
+    font-style: italic;
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: clamp(24px, 4vw, 48px);
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.8s forwards;
+  }
+
+  .hero-meta-item .label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--green-light);
+    font-family: 'DM Mono', monospace;
+    margin-bottom: 3px;
+  }
+
+  .hero-meta-item .value {
+    font-size: clamp(12px, 1.6vw, 14px);
+    color: rgba(255,255,255,0.75);
+    font-weight: 500;
+  }
+
+  /* ─── SECTION ─── */
+  .section {
+    padding: clamp(56px, 8vw, 96px) clamp(24px, 6vw, 100px);
+    position: relative;
+  }
+
+  .section:nth-child(even) { background: var(--white); }
+  .section:nth-child(odd) { background: var(--off-white); }
+
+  .section-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 44px;
+    padding-bottom: 24px;
+    border-bottom: 2px solid var(--green-pale2);
+  }
+
+  .section-num {
+    font-family: 'DM Mono', monospace;
+    font-size: clamp(10px, 1.4vw, 12px);
+    color: var(--text-dim);
+    letter-spacing: 0.2em;
+    padding-top: 7px;
+    white-space: nowrap;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(26px, 3.8vw, 46px);
+    font-weight: 700;
+    color: var(--green-dark);
+    line-height: 1.1;
+  }
+
+  .section-title span { color: var(--green-light); }
+
+  .section-amount {
+    font-family: 'DM Mono', monospace;
+    font-size: clamp(13px, 1.8vw, 16px);
+    color: var(--green-mid);
+    margin-top: 6px;
+    font-weight: 500;
+  }
+
+  /* ─── SUMMARY CARDS ─── */
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    gap: 16px;
+  }
+
+  .summary-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-top: 4px solid var(--green-light);
+    padding: clamp(20px, 3vw, 28px);
+    position: relative;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    cursor: default;
+  }
+
+  .summary-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow);
+  }
+
+  .summary-card.total {
+    background: var(--green-dark);
+    border-top-color: var(--green-light);
+    grid-column: 1 / -1;
+  }
+
+  .card-icon { font-size: 22px; margin-bottom: 12px; display: block; }
+
+  .card-label {
+    font-size: clamp(10px, 1.3vw, 12px);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .summary-card.total .card-label { color: var(--green-light); }
+
+  .card-amount {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(20px, 2.5vw, 26px);
+    font-weight: 700;
+    color: var(--green-dark);
+  }
+
+  .summary-card.total .card-amount {
+    font-size: clamp(26px, 3.5vw, 38px);
+    color: var(--white);
+  }
+
+  /* ─── TABLES ─── */
+  .table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border: 1px solid var(--border-dark);
+    border-radius: 2px;
+    box-shadow: var(--shadow);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 480px;
+  }
+
+  thead tr { background: var(--green-dark); }
+
+  thead th {
+    padding: clamp(12px, 2vw, 16px) clamp(16px, 2.5vw, 24px);
+    text-align: left;
+    font-family: 'DM Mono', monospace;
+    font-size: clamp(9px, 1.2vw, 11px);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  thead th:last-child { text-align: right; }
+
+  tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+
+  tbody tr:nth-child(odd)  { background: var(--white); }
+  tbody tr:nth-child(even) { background: var(--green-pale); }
+  tbody tr:hover { background: var(--green-pale2); }
+
+  tbody tr.section-row {
+    background: var(--green-pale2) !important;
+  }
+
+  tbody tr.section-row td {
+    font-weight: 600;
+    color: var(--green-dark);
+    font-size: clamp(11px, 1.4vw, 13px);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  tbody tr.total-row {
+    background: var(--green-dark) !important;
+    border-bottom: none;
+  }
+
+  tbody tr.total-row td {
+    color: var(--white) !important;
+    font-weight: 600;
+  }
+
+  td {
+    padding: clamp(11px, 1.8vw, 15px) clamp(16px, 2.5vw, 24px);
+    font-size: clamp(12px, 1.5vw, 14px);
+    color: var(--text-mid);
+    vertical-align: middle;
+  }
+
+  td:last-child {
+    text-align: right;
+    font-family: 'DM Mono', monospace;
+    font-weight: 500;
+    color: var(--green-dark);
+    white-space: nowrap;
+  }
+
+  td:first-child { color: var(--text); }
+
+  tbody tr.total-row td:last-child {
+    color: var(--green-light) !important;
+    font-size: clamp(13px, 1.8vw, 15px);
+  }
+
+  tbody tr.section-row td:last-child {
+    color: var(--green-mid);
+  }
+
+  /* ─── LGA CARDS ─── */
+  .lga-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 14px;
+  }
+
+  .lga-item {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--green-light);
+    padding: 20px 22px;
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+
+  .lga-item:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
+  }
+
+  .lga-item .item-name {
+    font-size: clamp(12px, 1.5vw, 14px);
+    color: var(--text);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  .lga-item .item-cost {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(18px, 2.2vw, 22px);
+    color: var(--green-dark);
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .lga-item .item-detail {
+    font-size: 11px;
+    color: var(--text-dim);
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* ─── PAYMENT CARDS ─── */
+  .payment-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .payment-card {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(28px, 4vw, 48px);
+    border: 1px solid var(--border-dark);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .payment-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .payment-card.signing {
+    background: var(--green-dark);
+  }
+
+  .payment-card.golive {
+    background: var(--white);
+    border-left: 5px solid var(--green-light);
+  }
+
+  /* Nigerian flag stripe accent */
+  .payment-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 5px;
+    background: linear-gradient(90deg,
+      var(--green-light) 0%, var(--green-light) 33.3%,
+      var(--white) 33.3%, var(--white) 66.6%,
+      var(--green-light) 66.6%, var(--green-light) 100%);
+  }
+
+  .payment-badge {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    margin-bottom: 20px;
+    border-radius: 1px;
+  }
+
+  .payment-card.signing .payment-badge {
+    background: rgba(39,174,96,0.2);
+    color: var(--green-light);
+    border: 1px solid rgba(39,174,96,0.3);
+  }
+
+  .payment-card.golive .payment-badge {
+    background: var(--green-pale2);
+    color: var(--green-mid);
+    border: 1px solid var(--border-dark);
+  }
+
+  .payment-when {
+    position: absolute;
+    top: 20px; right: 20px;
+    font-size: 10px;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+  }
+
+  .payment-card.signing .payment-when {
+    color: rgba(255,255,255,0.4);
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .payment-card.golive .payment-when {
+    color: var(--text-dim);
+    background: var(--green-pale);
+    border: 1px solid var(--border);
+  }
+
+  .payment-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(18px, 2.5vw, 24px);
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.2;
+  }
+
+  .payment-card.signing .payment-name { color: var(--white); }
+  .payment-card.golive  .payment-name { color: var(--green-dark); }
+
+  .payment-percent {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(56px, 8vw, 96px);
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .payment-card.signing .payment-percent { color: var(--green-light); }
+  .payment-card.golive  .payment-percent { color: var(--green-dark); }
+
+  .payment-amount {
+    font-family: 'DM Mono', monospace;
+    font-size: clamp(13px, 1.8vw, 16px);
+    font-weight: 500;
+  }
+
+  .payment-card.signing .payment-amount { color: rgba(255,255,255,0.6); }
+  .payment-card.golive  .payment-amount { color: var(--text-muted); }
+
+  /* ─── TIMELINE ─── */
+  .timeline {
+    position: relative;
+    padding-left: 44px;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 14px; top: 8px; bottom: 8px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--green-light), var(--green-pale2));
+  }
+
+  .timeline-phase {
+    position: relative;
+    margin-bottom: 40px;
+  }
+
+  .timeline-phase::before {
+    content: '';
+    position: absolute;
+    left: -36px; top: 10px;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--green-light);
+    border: 3px solid var(--off-white);
+    box-shadow: 0 0 0 3px rgba(39,174,96,0.25);
+  }
+
+  .timeline-phase-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(16px, 2vw, 20px);
+    font-weight: 700;
+    color: var(--green-dark);
+    margin-bottom: 14px;
+  }
+
+  .timeline-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .timeline-tag {
+    font-size: clamp(11px, 1.3vw, 12px);
+    color: var(--green-mid);
+    background: var(--green-pale);
+    border: 1px solid var(--border-dark);
+    padding: 5px 13px;
+    border-radius: 2px;
+    font-family: 'DM Sans', sans-serif;
+    transition: background 0.2s;
+  }
+
+  .timeline-tag:hover {
+    background: var(--green-pale2);
+  }
+
+  /* ─── CONTINGENCY CARDS ─── */
+  .contig-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 14px;
+  }
+
+  .contig-item {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--green-light);
+    padding: 20px;
+    transition: transform 0.25s;
+  }
+
+  .contig-item:hover { transform: translateY(-3px); }
+
+  .contig-item .c-title {
+    font-weight: 600;
+    color: var(--green-dark);
+    font-size: clamp(13px, 1.5vw, 14px);
+    margin-bottom: 6px;
+  }
+
+  .contig-item .c-desc {
+    font-size: 12px;
+    color: var(--text-dim);
+  }
+
+  /* ─── FLAG DIVIDER ─── */
+  .flag-divider {
+    height: 5px;
+    background: linear-gradient(90deg,
+      var(--green-light) 0%, var(--green-light) 33.3%,
+      var(--white) 33.3%, var(--white) 66.6%,
+      var(--green-light) 66.6%, var(--green-light) 100%);
+    border-top: 1px solid var(--border-dark);
+    border-bottom: 1px solid var(--border-dark);
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--green-dark);
+    padding: clamp(40px, 6vw, 64px) clamp(24px, 6vw, 100px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+    border-top: 4px solid var(--green-light);
+  }
+
+  .footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(18px, 2.5vw, 24px);
+    font-weight: 700;
+    color: var(--white);
+  }
+
+  .footer-brand span { color: var(--green-light); }
+
+  .footer-contact {
+    font-family: 'DM Mono', monospace;
+    font-size: clamp(11px, 1.4vw, 13px);
+    color: rgba(255,255,255,0.5);
+    margin-top: 8px;
+  }
+
+  .footer-contact a {
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-contact a:hover { color: var(--green-light); }
+
+  .print-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 10px 22px;
+    cursor: pointer;
+    background: none;
+    transition: all 0.25s;
+    text-decoration: none;
+  }
+
+  .print-btn:hover {
+    border-color: var(--green-light);
+    color: var(--green-light);
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 768px) {
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 62px; left: 0; right: 0;
+      background: var(--green-dark);
+      flex-direction: column;
+      padding: 20px clamp(20px, 5vw, 80px);
+      gap: 18px;
+      border-bottom: 3px solid var(--green-light);
+    }
+
+    .nav-links.open { display: flex; }
+    .nav-toggle { display: flex; }
+
+    .hero { min-height: auto; padding-top: 100px; padding-bottom: 60px; }
+    .hero-flag-deco { display: none; }
+
+    .payment-wrap { grid-template-columns: 1fr; }
+    .summary-grid { grid-template-columns: 1fr 1fr; }
+    footer { flex-direction: column; align-items: flex-start; }
+  }
+
+  @media (max-width: 500px) {
+    .summary-grid { grid-template-columns: 1fr; }
+    .lga-grid { grid-template-columns: 1fr; }
+    .contig-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* ─── PRINT ─── */
+  @media print {
+    nav, .print-btn { display: none !important; }
+    .hero { min-height: auto; padding-top: 40px; }
+    .reveal { opacity: 1 !important; transform: none !important; }
+    .section:nth-child(odd)  { background: white !important; }
+    .section:nth-child(even) { background: #f9fdf9 !important; }
+  }
+</style>
 </head>
-<body class="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-4 md:p-8">
-    <div class="max-w-6xl mx-auto">
-        <!-- Header -->
-        <div class="bg-white rounded-lg shadow-lg p-8 mb-6">
-            <div class="text-center mb-6">
-                <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-2">
-                    EDO STATE TAX REVENUE SYSTEM
-                </h1>
-                <p class="text-gray-600 text-lg">Comprehensive Digital Transformation Proposal</p>
-            </div>
-            
-            <div class="bg-gradient-to-r from-green-600 to-green-700 rounded-lg p-6 text-white text-center">
-                <p class="text-sm uppercase tracking-wide mb-2">Total Project Investment</p>
-                <p class="text-5xl font-bold mb-2">₦600,000,000</p>
-                <p class="text-sm opacity-90">Six Hundred Million Naira Only</p>
-            </div>
-        </div>
+<body>
 
-        <!-- Navigation Tabs -->
-        <div class="bg-white rounded-lg shadow-md mb-6 overflow-hidden">
-            <div class="flex overflow-x-auto">
-                <button onclick="switchTab('summary')" id="tab-summary" class="px-6 py-4 font-semibold whitespace-nowrap transition-colors bg-green-600 text-white">
-                    Executive Summary
-                </button>
-                <button onclick="switchTab('breakdown')" id="tab-breakdown" class="px-6 py-4 font-semibold whitespace-nowrap transition-colors bg-gray-100 text-gray-700 hover:bg-gray-200">
-                    Detailed Breakdown
-                </button>
-                <button onclick="switchTab('benefits')" id="tab-benefits" class="px-6 py-4 font-semibold whitespace-nowrap transition-colors bg-gray-100 text-gray-700 hover:bg-gray-200">
-                    Key Benefits
-                </button>
-            </div>
-        </div>
+<!-- NAV -->
+<nav>
+  <div class="nav-flag">
+    <img src="data:image/png;base64,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" class="nav-logo" alt="ACE CRE8IVE TECH AGENCY Logo" />
+    <div class="nav-brand">ACE CRE8IVE <span>TECH</span> AGENCY</div>
+  </div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#summary">Summary</a></li>
+    <li><a href="#system">System</a></li>
+    <li><a href="#hardware">Hardware</a></li>
+    <li><a href="#security">Security</a></li>
+    <li><a href="#hosting">Hosting</a></li>
+    <li><a href="#timeline">Timeline</a></li>
+    <li><a href="#payment">Payment</a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
 
-        <!-- Content Area -->
-        <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
-            <!-- Summary Tab -->
-            <div id="content-summary" class="tab-content">
-                <h2 class="text-2xl font-bold text-gray-800 mb-6">Project Cost Summary</h2>
-                <div class="overflow-x-auto">
-                    <table class="w-full border-collapse">
-                        <thead>
-                            <tr class="bg-gray-100">
-                                <th class="text-left px-4 py-3 border-b-2 border-gray-300 font-semibold text-gray-700">Component</th>
-                                <th class="text-right px-4 py-3 border-b-2 border-gray-300 font-semibold text-gray-700">Amount (₦)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="hover:bg-gray-50">
-                                <td class="px-4 py-3 border-b border-gray-200">Part 1: Complete Enterprise System Development</td>
-                                <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">320,000,000</td>
-                            </tr>
-                            <tr class="hover:bg-gray-50">
-                                <td class="px-4 py-3 border-b border-gray-200">Part 2: Security, Compliance & Independent Audits</td>
-                                <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">60,000,000</td>
-                            </tr>
-                            <tr class="hover:bg-gray-50">
-                                <td class="px-4 py-3 border-b border-gray-200">Part 3: Training, Change Management & Adoption</td>
-                                <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">45,000,000</td>
-                            </tr>
-                            <tr class="hover:bg-gray-50">
-                                <td class="px-4 py-3 border-b border-gray-200">Part 4: Documentation & Knowledge Transfer</td>
-                                <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">15,000,000</td>
-                            </tr>
-                            <tr class="hover:bg-gray-50">
-                                <td class="px-4 py-3 border-b border-gray-200">Part 5: 2-Year Hosting, Support & SLA</td>
-                                <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">110,000,000</td>
-                            </tr>
-                            <tr class="hover:bg-gray-50">
-                                <td class="px-4 py-3 border-b border-gray-200">Part 6: Project Management, QA & Governance</td>
-                                <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">25,000,000</td>
-                            </tr>
-                            <tr class="hover:bg-gray-50">
-                                <td class="px-4 py-3 border-b border-gray-200">Part 7: Strategic Risk & Contingency Buffer</td>
-                                <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">25,000,000</td>
-                            </tr>
-                        </tbody>
-                        <tfoot>
-                            <tr class="bg-green-50 font-bold">
-                                <td class="px-4 py-3 border-t-2 border-green-600">TOTAL</td>
-                                <td class="text-right px-4 py-3 border-t-2 border-green-600 font-mono text-green-700">₦600,000,000</td>
-                            </tr>
-                        </tfoot>
-                    </table>
-                </div>
-                
-                <div class="mt-8 grid md:grid-cols-3 gap-4">
-                    <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
-                        <h3 class="font-semibold text-blue-900 mb-2">Development</h3>
-                        <p class="text-2xl font-bold text-blue-700">₦320M</p>
-                        <p class="text-sm text-blue-600 mt-1">53% of budget</p>
-                    </div>
-                    <div class="bg-purple-50 p-4 rounded-lg border border-purple-200">
-                        <h3 class="font-semibold text-purple-900 mb-2">Operations (2 Years)</h3>
-                        <p class="text-2xl font-bold text-purple-700">₦110M</p>
-                        <p class="text-sm text-purple-600 mt-1">18% of budget</p>
-                    </div>
-                    <div class="bg-amber-50 p-4 rounded-lg border border-amber-200">
-                        <h3 class="font-semibold text-amber-900 mb-2">Training & Support</h3>
-                        <p class="text-2xl font-bold text-amber-700">₦145M</p>
-                        <p class="text-sm text-amber-600 mt-1">24% of budget</p>
-                    </div>
-                </div>
-            </div>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-flag-deco">
+    <div class="g"></div><div class="w"></div><div class="g"></div>
+  </div>
 
-            <!-- Breakdown Tab -->
-            <div id="content-breakdown" class="tab-content hidden">
-                <h2 class="text-2xl font-bold text-gray-800 mb-6">Detailed Cost Breakdown</h2>
-                
-                <!-- Part 1 -->
-                <div class="border border-gray-200 rounded-lg mb-4 overflow-hidden">
-                    <button onclick="toggleSection('section1')" class="w-full px-6 py-4 bg-gradient-to-r from-green-50 to-green-100 flex items-center justify-between hover:from-green-100 hover:to-green-200 transition-colors">
-                        <div class="flex items-center gap-3">
-                            <svg class="w-5 h-5 text-green-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                            </svg>
-                            <h3 class="text-lg font-semibold text-gray-800">Part 1: Enterprise System Development - ₦320M</h3>
-                        </div>
-                        <svg class="w-5 h-5 text-gray-600 chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </button>
-                    <div id="section1" class="px-6 py-4 bg-white">
-                        <h4 class="font-semibold text-gray-700 mb-3">A. Core Platform - ₦150M</h4>
-                        <table class="w-full border-collapse mb-6">
-                            <tbody>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-4 py-3 border-b border-gray-200">Web Platform (Citizen + Business Portal)</td>
-                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">55,000,000</td>
-                                </tr>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-4 py-3 border-b border-gray-200">USSD Platform (All Networks)</td>
-                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">45,000,000</td>
-                                </tr>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-4 py-3 border-b border-gray-200">Payment & Revenue Engine</td>
-                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">50,000,000</td>
-                                </tr>
-                            </tbody>
-                        </table>
+  <div class="hero-eyebrow">
+    <div class="hero-eyebrow-line"></div>
+    <div class="hero-eyebrow-text">Total Project Cost Breakdown · Tax Revenue System</div>
+  </div>
 
-                        <div class="pl-4">
-                            <h5 class="font-semibold text-gray-600 mb-2">Web Platform Features:</h5>
-                            <ul class="list-disc list-inside text-gray-600 space-y-1 mb-4">
-                                <li>Citizen Portal</li>
-                                <li>Personal & business tax management</li>
-                                <li>Digital wallet & payment history</li>
-                                <li>Receipts & clearance certificates</li>
-                                <li>Compliance notifications</li>
-                            </ul>
-                            
-                            <h5 class="font-semibold text-gray-600 mb-2">USSD Platform Breakdown:</h5>
-                            <table class="w-full border-collapse mb-4">
-                                <tbody>
-                                    <tr class="hover:bg-gray-50">
-                                        <td class="px-4 py-2 border-b border-gray-200">USSD Core System</td>
-                                        <td class="text-right px-4 py-2 border-b border-gray-200 font-mono">15,000,000</td>
-                                    </tr>
-                                    <tr class="hover:bg-gray-50">
-                                        <td class="px-4 py-2 border-b border-gray-200">MTN, Airtel, Glo, 9mobile Integration</td>
-                                        <td class="text-right px-4 py-2 border-b border-gray-200 font-mono">15,000,000</td>
-                                    </tr>
-                                    <tr class="hover:bg-gray-50">
-                                        <td class="px-4 py-2 border-b border-gray-200">USSD Payment, History & Receipts</td>
-                                        <td class="text-right px-4 py-2 border-b border-gray-200 font-mono">15,000,000</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            
-                            <h5 class="font-semibold text-gray-600 mb-2">Payment Engine Components:</h5>
-                            <table class="w-full border-collapse">
-                                <tbody>
-                                    <tr class="hover:bg-gray-50">
-                                        <td class="px-4 py-2 border-b border-gray-200">Tax Calculation Engine</td>
-                                        <td class="text-right px-4 py-2 border-b border-gray-200 font-mono">12,000,000</td>
-                                    </tr>
-                                    <tr class="hover:bg-gray-50">
-                                        <td class="px-4 py-2 border-b border-gray-200">Multi-Gateway Integration (Paystack, Flutterwave, Interswitch, Remita)</td>
-                                        <td class="text-right px-4 py-2 border-b border-gray-200 font-mono">15,000,000</td>
-                                    </tr>
-                                    <tr class="hover:bg-gray-50">
-                                        <td class="px-4 py-2 border-b border-gray-200">Installment & Partial Payment Logic</td>
-                                        <td class="text-right px-4 py-2 border-b border-gray-200 font-mono">8,000,000</td>
-                                    </tr>
-                                    <tr class="hover:bg-gray-50">
-                                        <td class="px-4 py-2 border-b border-gray-200">Automated Receipts & Reconciliation</td>
-                                        <td class="text-right px-4 py-2 border-b border-gray-200 font-mono">15,000,000</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+  <h1 class="hero-title">
+    Edo State
+    <em>Revenue System</em>
+  </h1>
 
-                        <h4 class="font-semibold text-gray-700 mb-3 mt-6">B. Admin & Government Dashboard - ₦85M</h4>
-                        <table class="w-full border-collapse mb-6">
-                            <tbody>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-4 py-3 border-b border-gray-200">Revenue Monitoring Dashboard</td>
-                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">20,000,000</td>
-                                </tr>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-4 py-3 border-b border-gray-200">Taxpayer Management System</td>
-                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">15,000,000</td>
-                                </tr>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-4 py-3 border-b border-gray-200">Transaction & Refund Management</td>
-                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">15,000,000</td>
-                                </tr>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-4 py-3 border-b border-gray-200">Advanced Analytics & Forecasting</td>
-                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">20,000,000</td>
-                                </tr>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-4 py-3 border-b border-gray-200">Role-Based Access & Audit Logs</td>
-                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">15,000,000</td>
-                                </tr>
-                            </tbody>
-                        </table>
+  <p class="hero-desc">A comprehensive digital tax infrastructure covering all 18 Local Government Areas, built for transparency, compliance, and scale across Edo State.</p>
 
-                        <h4 class="font-semibold text-gray-700 mb-3">C. Integration Suite - ₦85M</h4>
-                        <table class="w-full border-collapse">
-                            <tbody>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-4 py-3 border-b border-gray-200">Bank & NIBSS Integration (20+ Banks)</td>
-                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">30,000,000</td>
-                                </tr>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-4 py-3 border-b border-gray-200">Government Systems (FIRS, CAC, NIMC, State Systems)</td>
-                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">35,000,000</td>
-                                </tr>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-4 py-3 border-b border-gray-200">SMS, Email, OTP & Notification Services</td>
-                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">10,000,000</td>
-                                </tr>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-4 py-3 border-b border-gray-200">API Gateway & Integration Security</td>
-                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">10,000,000</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+  <div class="hero-budget-box">
+    <div class="hero-budget-label">Total Project Budget</div>
+    <div class="hero-budget-amount">₦1,700,000,000</div>
+    <div class="hero-budget-sub">One Billion, Seven Hundred Million Naira Only</div>
+  </div>
 
-                <!-- Part 2 -->
-                <div class="border border-gray-200 rounded-lg mb-4 overflow-hidden">
-                    <button onclick="toggleSection('section2')" class="w-full px-6 py-4 bg-gradient-to-r from-green-50 to-green-100 flex items-center justify-between hover:from-green-100 hover:to-green-200 transition-colors">
-                        <div class="flex items-center gap-3">
-                            <svg class="w-5 h-5 text-green-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
-                            </svg>
-                            <h3 class="text-lg font-semibold text-gray-800">Part 2: Security, Compliance & Audits - ₦60M</h3>
-                        </div>
-                        <svg class="w-5 h-5 text-gray-600 chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </button>
-                    <div id="section2" class="px-6 py-4 bg-white hidden">
-                        <table class="w-full border-collapse">
-                            <tbody>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-4 py-3 border-b border-gray-200">Security Infrastructure (WAF, DDoS, Encryption)</td>
-                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">20,000,000</td>
-                                </tr>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-4 py-3 border-b border-gray-200">NDPA & PCI-DSS Compliance Readiness</td>
-                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">15,000,000</td>
-                                </tr>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-4 py-3 border-b border-gray-200">Independent Penetration Testing & Audits</td>
-                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">15,000,000</td>
-                                </tr>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-4 py-3 border-b border-gray-200">Logging, Monitoring & Incident Response Setup</td>
-                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">10,000,000</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- Part 3 -->
-                <div class="border border-gray-200 rounded-lg mb-4 overflow-hidden">
-                    <button onclick="toggleSection('section3')" class="w-full px-6 py-4 bg-gradient-to-r from-green-50 to-green-100 flex items-center justify-between hover:from-green-100 hover:to-green-200 transition-colors">
-                        <div class="flex items-center gap-3">
-                            <svg class="w-5 h-5 text-green-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
-                            </svg>
-                            <h3 class="text-lg font-semibold text-gray-800">Part 3: Training, Change Management & Adoption - ₦45M</h3>
-                        </div>
-                        <svg class="w-5 h-5 text-gray-600 chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </button>
-                    <div id="section3" class="px-6 py-4 bg-white hidden">
-                        <table class="w-full border-collapse">
-                            <tbody>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-4 py-3 border-b border-gray-200">Executive Briefings (Governor, Commissioners)</td>
-                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">5,000,000</td>
-                                </tr>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-4 py-3 border-b border-gray-200">Finance & Revenue Department Training</td>
-                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">10,000,000</td>
-                                </tr>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-4 py-3 border-b border-gray-200">LGA & Field Officers (All LGAs)</td>
-                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">15,000,000</td>
-                                </tr>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-4 py-3 border-b border-gray-200">IT & System Administrators</td>
-                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">10,000,000</td>
-                                </tr>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-4 py-3 border-b border-gray-200">Public Awareness & Adoption Materials</td>
-                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">5,000,000</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- Part 4 -->
-                <div class="border border-gray-200 rounded-lg mb-4 overflow-hidden">
-                    <button onclick="toggleSection('section4')" class="w-full px-6 py-4 bg-gradient-to-r from-green-50 to-green-100 flex items-center justify-between hover:from-green-100 hover:to-green-200 transition-colors">
-                        <div class="flex items-center gap-3">
-                            <svg class="w-5 h-5 text-green-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-                            </svg>
-                            <h3 class="text-lg font-semibold text-gray-800">Part 4: Documentation & Knowledge Transfer - ₦15M</h3>
-                        </div>
-                        <svg class="w-5 h-5 text-gray-600 chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </button>
-                    <div id="section4" class="px-6 py-4 bg-white hidden">
-                        <table class="w-full border-collapse">
-                            <tbody>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-4 py-3 border-b border-gray-200">Technical Architecture & API Documentation</td>
-                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">5,000,000</td>
-                                </tr>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-4 py-3 border-b border-gray-200">Admin & Operations Manuals</td>
-                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">4,000,000</td>
-                                </tr>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-4 py-3 border-b border-gray-200">Citizen & USSD User Guides</td>
-                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">3,000,000</td>
-                                </tr>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-4 py-3 border-b border-gray-200">Video Tutorials & E-Learning Content</td>
-                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">3,000,000</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- Part 5 -->
-                <div class="border border-gray-200 rounded-lg mb-4 overflow-hidden">
-                    <button onclick="toggleSection('section5')" class="w-full px-6 py-4 bg-gradient-to-r from-green-50 to-green-100 flex items-center justify-between hover:from-green-100 hover:to-green-200 transition-colors">
-                        <div class="flex items-center gap-3">
-                            <svg class="w-5 h-5 text-green-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path>
-                            </svg>
-                            <h3 class="text-lg font-semibold text-gray-800">Part 5: 2-Year Hosting, Support & SLA - ₦110M</h3>
-                        </div>
-                        <svg class="w-5 h-5 text-gray-600 chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </button>
-                    <div id="section5" class="px-6 py-4 bg-white hidden">
-                        <table class="w-full border-collapse">
-                            <tbody>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-4 py-3 border-b border-gray-200">Cloud Hosting (High Availability)</td>
-                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">45,000,000</td>
-                                </tr>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-4 py-3 border-b border-gray-200">USSD & SMS Services</td>
-                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">25,000,000</td>
-                                </tr>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-4 py-3 border-b border-gray-200">24/7 Helpdesk & Support Team</td>
-                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">25,000,000</td>
-                                </tr>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-4 py-3 border-b border-gray-200">Disaster Recovery & Backups</td>
-                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">15,000,000</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- Part 6 -->
-                <div class="border border-gray-200 rounded-lg mb-4 overflow-hidden">
-                    <button onclick="toggleSection('section6')" class="w-full px-6 py-4 bg-gradient-to-r from-green-50 to-green-100 flex items-center justify-between hover:from-green-100 hover:to-green-200 transition-colors">
-                        <div class="flex items-center gap-3">
-                            <svg class="w-5 h-5 text-green-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                            <h3 class="text-lg font-semibold text-gray-800">Part 6: Project Management, QA & Governance - ₦25M</h3>
-                        </div>
-                        <svg class="w-5 h-5 text-gray-600 chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </button>
-                    <div id="section6" class="px-6 py-4 bg-white hidden">
-                        <table class="w-full border-collapse">
-                            <tbody>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-4 py-3 border-b border-gray-200">Project Management & Governance</td>
-                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">12,000,000</td>
-                                </tr>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-4 py-3 border-b border-gray-200">Quality Assurance & Testing</td>
-                                    <td class="text-right px-4 py-3 border-b border-gray-200 font-mono">13,000,000</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- Part 7 -->
-                <div class="border border-gray-200 rounded-lg mb-4 overflow-hidden">
-                    <button onclick="toggleSection('section7')" class="w-full px-6 py-4 bg-gradient-to-r from-green-50 to-green-100 flex items-center justify-between hover:from-green-100 hover:to-green-200 transition-colors">
-                        <div class="flex items-center gap-3">
-                            <svg class="w-5 h-5 text-green-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
-                            </svg>
-                            <h3 class="text-lg font-semibold text-gray-800">Part 7: Strategic Risk & Contingency Buffer - ₦25M</h3>
-                        </div>
-                        <svg class="w-5 h-5 text-gray-600 chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </button>
-                    <div id="section7" class="px-6 py-4 bg-white hidden">
-                        <div class="text-gray-600">
-                            <p class="mb-2">This buffer accounts for:</p>
-                            <ul class="list-disc list-inside space-y-1">
-                                <li>Regulatory changes during implementation</li>
-                                <li>Scope adjustments based on stakeholder feedback</li>
-                                <li>Political and operational risk mitigation</li>
-                                <li>Unforeseen technical challenges</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Benefits Tab -->
-            <div id="content-benefits" class="tab-content hidden">
-                <h2 class="text-2xl font-bold text-gray-800 mb-6">Key Benefits & Value Proposition</h2>
-                
-                <div class="space-y-6">
-                    <div class="bg-green-50 border-l-4 border-green-600 p-4 rounded">
-                        <h3 class="font-bold text-green-900 mb-2">Revenue Optimization</h3>
-                        <p class="text-gray-700">Automated tax collection with multi-channel access (web, USSD, mobile) increases compliance and reduces revenue leakage.</p>
-                    </div>
-
-                    <div class="bg-blue-50 border-l-4 border-blue-600 p-4 rounded">
-                        <h3 class="font-bold text-blue-900 mb-2">Transparency & Accountability</h3>
-                        <p class="text-gray-700">Real-time dashboards, audit trails, and automated reconciliation ensure full visibility of all transactions.</p>
-                    </div>
-
-                    <div class="bg-purple-50 border-l-4 border-purple-600 p-4 rounded">
-                        <h3 class="font-bold text-purple-900 mb-2">Citizen Convenience</h3>
-                        <p class="text-gray-700">24/7 access via web and USSD platforms with instant receipts and payment confirmations.</p>
-                    </div>
-
-                    <div class="bg-amber-50 border-l-4 border-amber-600 p-4 rounded">
-                        <h3 class="font-bold text-amber-900 mb-2">Comprehensive Coverage</h3>
-                        <p class="text-gray-700">Includes everything from development to 2-year support, training for all stakeholders, and full documentation.</p>
-                    </div>
-
-                    <div class="bg-red-50 border-l-4 border-red-600 p-4 rounded">
-                        <h3 class="font-bold text-red-900 mb-2">Enterprise Security</h3>
-                        <p class="text-gray-700">Bank-grade security with NDPA compliance, regular penetration testing, and disaster recovery protocols.</p>
-                    </div>
-
-                    <div class="bg-indigo-50 border-l-4 border-indigo-600 p-4 rounded">
-                        <h3 class="font-bold text-indigo-900 mb-2">Seamless Integration</h3>
-                        <p class="text-gray-700">Connects with FIRS, CAC, NIMC, 20+ banks, and all major payment gateways for complete ecosystem coverage.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Footer -->
-        <div class="mt-6 bg-white rounded-lg shadow-md p-6 text-center text-gray-600">
-            <p class="text-sm">This proposal is valid for 90 days from date of submission</p>
-            <p class="text-xs mt-2">© 2026 - Edo State Tax Revenue System Proposal</p>
-        </div>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <div class="label">Prepared By</div>
+      <div class="value">ACE CRE8IVE TECH AGENCY</div>
     </div>
+    <div class="hero-meta-item">
+      <div class="label">Email</div>
+      <div class="value">info@acecre8iveagency.com</div>
+    </div>
+    <div class="hero-meta-item">
+      <div class="label">Phone</div>
+      <div class="value">08106626970</div>
+    </div>
+    <div class="hero-meta-item">
+      <div class="label">Coverage</div>
+      <div class="value">All 18 LGAs · Edo State</div>
+    </div>
+  </div>
+</section>
 
-    <script>
-        function switchTab(tab) {
-            // Hide all content
-            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
-            
-            // Remove active class from all tabs
-            document.querySelectorAll('[id^="tab-"]').forEach(el => {
-                el.classList.remove('bg-green-600', 'text-white');
-                el.classList.add('bg-gray-100', 'text-gray-700', 'hover:bg-gray-200');
-            });
-            
-            // Show selected content
-            document.getElementById('content-' + tab).classList.remove('hidden');
-            
-            // Add active class to selected tab
-            const activeTab = document.getElementById('tab-' + tab);
-            activeTab.classList.add('bg-green-600', 'text-white');
-            activeTab.classList.remove('bg-gray-100', 'text-gray-700', 'hover:bg-gray-200');
-        }
+<div class="flag-divider"></div>
 
-        function toggleSection(sectionId) {
-            const section = document.getElementById(sectionId);
-            const button = section.previousElementSibling;
-            const chevron = button.querySelector('.chevron');
-            
-            if (section.classList.contains('hidden')) {
-                section.classList.remove('hidden');
-                chevron.style.transform = 'rotate(180deg)';
-            } else {
-                section.classList.add('hidden');
-                chevron.style.transform = 'rotate(0deg)';
-            }
-        }
-    </script>
+<!-- SUMMARY -->
+<section class="section" id="summary">
+  <div class="section-header reveal">
+    <span class="section-num">00 —</span>
+    <div>
+      <div class="section-title">Budget <span>Summary</span></div>
+      <div class="section-amount">₦1,700,000,000 · Grand Total</div>
+    </div>
+  </div>
+
+  <div class="summary-grid reveal">
+    <div class="summary-card">
+      <span class="card-icon">⚙️</span>
+      <div class="card-label">Complete System Development</div>
+      <div class="card-amount">₦520,000,000</div>
+    </div>
+    <div class="summary-card">
+      <span class="card-icon">🖥️</span>
+      <div class="card-label">LGA Desktop Purchase & Setup (18 LGAs)</div>
+      <div class="card-amount">₦200,000,000</div>
+    </div>
+    <div class="summary-card">
+      <span class="card-icon">🔒</span>
+      <div class="card-label">Security, Compliance & Independent Audit</div>
+      <div class="card-amount">₦120,000,000</div>
+    </div>
+    <div class="summary-card">
+      <span class="card-icon">☁️</span>
+      <div class="card-label">2-Year Hosting & Support</div>
+      <div class="card-amount">₦200,000,000</div>
+    </div>
+    <div class="summary-card">
+      <span class="card-icon">🎓</span>
+      <div class="card-label">Training & Adoption</div>
+      <div class="card-amount">₦80,000,000</div>
+    </div>
+    <div class="summary-card">
+      <span class="card-icon">📋</span>
+      <div class="card-label">Project Management & QA</div>
+      <div class="card-amount">₦55,000,000</div>
+    </div>
+    <div class="summary-card">
+      <span class="card-icon">📄</span>
+      <div class="card-label">Documentation</div>
+      <div class="card-amount">₦25,000,000</div>
+    </div>
+    <div class="summary-card">
+      <span class="card-icon">🛡️</span>
+      <div class="card-label">Strategic Risk / Contingency Buffer</div>
+      <div class="card-amount">₦50,000,000</div>
+    </div>
+    <div class="summary-card total">
+      <span class="card-icon">🇳🇬</span>
+      <div class="card-label">Grand Total · Edo State Tax Revenue System</div>
+      <div class="card-amount">₦1,700,000,000 &nbsp;(1.7 Billion Naira)</div>
+    </div>
+  </div>
+</section>
+
+<div class="flag-divider"></div>
+
+<!-- SYSTEM DEVELOPMENT -->
+<section class="section" id="system">
+  <div class="section-header reveal">
+    <span class="section-num">01 —</span>
+    <div>
+      <div class="section-title">Complete System <span>Development</span></div>
+      <div class="section-amount">₦520,000,000</div>
+    </div>
+  </div>
+  <div class="table-wrap reveal">
+    <table>
+      <thead><tr><th>Component</th><th>Cost</th></tr></thead>
+      <tbody>
+        <tr class="section-row"><td>A. Core Platform</td><td>₦260,000,000</td></tr>
+        <tr><td>Web Platform – Fully Responsive (Citizen Portal, Tax Management, Compliance Notifications, Public Portal)</td><td>₦100,000,000</td></tr>
+        <tr><td>USSD Platform – All 4 Networks (MTN, Airtel, Glo, 9mobile) · Payment, Inquiry, Receipts, History</td><td>₦75,000,000</td></tr>
+        <tr><td>Payment & Revenue Engine (Paystack, Flutterwave, Interswitch, Remita · Installment Logic · Auto Reconciliation)</td><td>₦85,000,000</td></tr>
+        <tr class="section-row"><td>B. Admin & Government Dashboard</td><td>₦130,000,000</td></tr>
+        <tr><td>Revenue Monitoring Dashboard & Advanced Analytics & Forecasting</td><td>—</td></tr>
+        <tr><td>Taxpayer Management System & Transaction / Refund Management</td><td>—</td></tr>
+        <tr><td>Role-Based Access Control & Audit Logs</td><td>—</td></tr>
+        <tr class="section-row"><td>C. Integration Suite</td><td>₦130,000,000</td></tr>
+        <tr><td>Bank Integration – 20+ Banks & NIBSS</td><td>—</td></tr>
+        <tr><td>Government Systems – FIRS, CAC, NIMC, State Systems</td><td>—</td></tr>
+        <tr><td>Third-Party Services – SMS, Email, OTP</td><td>—</td></tr>
+        <tr class="total-row"><td>Complete System Total</td><td>₦520,000,000</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div class="flag-divider"></div>
+
+<!-- LGA HARDWARE -->
+<section class="section" id="hardware">
+  <div class="section-header reveal">
+    <span class="section-num">02 —</span>
+    <div>
+      <div class="section-title">LGA Desktop Purchase <span>& Setup</span></div>
+      <div class="section-amount">₦200,000,000 · All 18 LGAs</div>
+    </div>
+  </div>
+
+  <p class="reveal" style="color:var(--text-muted); max-width:660px; margin-bottom:32px; font-size:clamp(13px,1.6vw,15px);">
+    Complete hardware procurement and on-site commissioning for all 18 Local Government Areas in Edo State. Every LGA office will be fully equipped to access and operate the Tax Revenue System efficiently from day one.
+  </p>
+
+  <div class="lga-grid reveal">
+    <div class="lga-item">
+      <div class="item-name">Desktop Computers</div>
+      <div class="item-cost">₦90,000,000</div>
+      <div class="item-detail">18 LGAs × 10 units = 180 units</div>
+    </div>
+    <div class="lga-item">
+      <div class="item-name">Laptops for Field Officers</div>
+      <div class="item-cost">₦45,000,000</div>
+      <div class="item-detail">18 LGAs × 5 units = 90 laptops</div>
+    </div>
+    <div class="lga-item">
+      <div class="item-name">Network Infrastructure</div>
+      <div class="item-cost">₦27,000,000</div>
+      <div class="item-detail">Routers, switches, LAN cabling per LGA</div>
+    </div>
+    <div class="lga-item">
+      <div class="item-name">UPS / Power Backup</div>
+      <div class="item-cost">₦9,000,000</div>
+      <div class="item-detail">Per LGA installation</div>
+    </div>
+    <div class="lga-item">
+      <div class="item-name">Printers & Scanners</div>
+      <div class="item-cost">₦9,000,000</div>
+      <div class="item-detail">Per LGA office</div>
+    </div>
+    <div class="lga-item">
+      <div class="item-name">On-site Setup & Commissioning</div>
+      <div class="item-cost">₦12,000,000</div>
+      <div class="item-detail">All 18 LGAs by certified technicians</div>
+    </div>
+    <div class="lga-item">
+      <div class="item-name">Software Licensing</div>
+      <div class="item-cost">₦8,000,000</div>
+      <div class="item-detail">OS, Antivirus, Office per unit</div>
+    </div>
+  </div>
+
+  <div class="table-wrap reveal" style="margin-top:32px;">
+    <table>
+      <thead><tr><th>Item</th><th>Cost</th></tr></thead>
+      <tbody>
+        <tr><td>Desktop Computers (180 units across 18 LGAs)</td><td>₦90,000,000</td></tr>
+        <tr><td>Laptop Computers for Field Revenue Officers (90 units)</td><td>₦45,000,000</td></tr>
+        <tr><td>Network Infrastructure (Routers, Switches, LAN Cabling)</td><td>₦27,000,000</td></tr>
+        <tr><td>UPS / Power Backup Units</td><td>₦9,000,000</td></tr>
+        <tr><td>Printers & Scanners</td><td>₦9,000,000</td></tr>
+        <tr><td>On-site Setup, Configuration & Commissioning (All 18 LGAs)</td><td>₦12,000,000</td></tr>
+        <tr><td>Software Licensing (OS, Antivirus, Microsoft Office per unit)</td><td>₦8,000,000</td></tr>
+        <tr class="total-row"><td>Total – LGA Hardware & Setup</td><td>₦200,000,000</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div class="flag-divider"></div>
+
+<!-- SECURITY -->
+<section class="section" id="security">
+  <div class="section-header reveal">
+    <span class="section-num">03 —</span>
+    <div>
+      <div class="section-title">Security, Compliance <span>& Audit</span></div>
+      <div class="section-amount">₦120,000,000</div>
+    </div>
+  </div>
+  <div class="table-wrap reveal">
+    <table>
+      <thead><tr><th>Component</th><th>Cost</th></tr></thead>
+      <tbody>
+        <tr><td>Security Infrastructure (WAF, DDoS Protection, Encryption, Access Control)</td><td>₦50,000,000</td></tr>
+        <tr><td>Security Testing & Penetration Audits</td><td>₦30,000,000</td></tr>
+        <tr><td>Compliance & Certification (NDPR, PCI DSS, ISO Readiness)</td><td>₦25,000,000</td></tr>
+        <tr><td>Independent Third-Party Audit</td><td>₦15,000,000</td></tr>
+        <tr class="total-row"><td>Total – Security & Compliance</td><td>₦120,000,000</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div class="flag-divider"></div>
+
+<!-- HOSTING -->
+<section class="section" id="hosting">
+  <div class="section-header reveal">
+    <span class="section-num">04 —</span>
+    <div>
+      <div class="section-title">2-Year Hosting <span>& Support</span></div>
+      <div class="section-amount">₦200,000,000</div>
+    </div>
+  </div>
+  <div class="table-wrap reveal">
+    <table>
+      <thead><tr><th>Service</th><th>2-Year Cost</th></tr></thead>
+      <tbody>
+        <tr><td>AWS Hosting (Year 1 & Year 2)</td><td>₦80,000,000</td></tr>
+        <tr><td>SMS / USSD Services (2 Years)</td><td>₦55,000,000</td></tr>
+        <tr><td>Remote Support Team (Technical Lead + 2 Engineers)</td><td>₦45,000,000</td></tr>
+        <tr><td>Disaster Recovery & Backups</td><td>₦20,000,000</td></tr>
+        <tr class="total-row"><td>Total – Hosting & Support</td><td>₦200,000,000</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div class="flag-divider"></div>
+
+<!-- TRAINING -->
+<section class="section">
+  <div class="section-header reveal">
+    <span class="section-num">05 —</span>
+    <div>
+      <div class="section-title">Training <span>& Adoption</span></div>
+      <div class="section-amount">₦80,000,000</div>
+    </div>
+  </div>
+  <div class="table-wrap reveal">
+    <table>
+      <thead><tr><th>Training Type</th><th>Participants</th><th>Cost</th></tr></thead>
+      <tbody>
+        <tr><td>Executive / Leadership Training (Governor & Commissioner)</td><td>5 Executives + 10 Senior Officials</td><td>₦10,000,000</td></tr>
+        <tr><td>Finance & Revenue Department Training</td><td>50 Staff + 10 Analysts</td><td>₦18,000,000</td></tr>
+        <tr><td>IT Department Training</td><td>15 IT Staff + 10 Admins</td><td>₦22,000,000</td></tr>
+        <tr><td>LGA Training – All 18 LGAs</td><td>36 Staff + Field Agents</td><td>₦20,000,000</td></tr>
+        <tr><td>E-Learning Platform Development</td><td>All Users (Online)</td><td>₦10,000,000</td></tr>
+        <tr class="total-row"><td>Total – Training & Adoption</td><td></td><td>₦80,000,000</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div class="flag-divider"></div>
+
+<!-- PROJECT MANAGEMENT & QA -->
+<section class="section">
+  <div class="section-header reveal">
+    <span class="section-num">06 —</span>
+    <div>
+      <div class="section-title">Project Management <span>& QA</span></div>
+      <div class="section-amount">₦55,000,000</div>
+    </div>
+  </div>
+  <div class="table-wrap reveal">
+    <table>
+      <thead><tr><th>Component</th><th>Cost</th></tr></thead>
+      <tbody>
+        <tr><td>Project Manager (Remote, Full Duration)</td><td>₦22,000,000</td></tr>
+        <tr><td>QA Team – Lead QA Engineer + 3 Testers (Part-Time)</td><td>₦13,000,000</td></tr>
+        <tr><td>Testing Activities (Functional, Performance, Security, UAT with Government)</td><td>₦20,000,000</td></tr>
+        <tr class="total-row"><td>Total – Project Management & QA</td><td>₦55,000,000</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div class="flag-divider"></div>
+
+<!-- DOCUMENTATION -->
+<section class="section">
+  <div class="section-header reveal">
+    <span class="section-num">07 —</span>
+    <div>
+      <div class="section-title"><span>Documentation</span></div>
+      <div class="section-amount">₦25,000,000</div>
+    </div>
+  </div>
+  <div class="table-wrap reveal">
+    <table>
+      <thead><tr><th>Document Type</th><th>Cost</th></tr></thead>
+      <tbody>
+        <tr><td>Technical Documentation (System Architecture, API, Database Docs, Operations Manual)</td><td>₦8,000,000</td></tr>
+        <tr><td>User Documentation (Citizen Guide, Admin Manual, Field Agent Manual)</td><td>₦7,000,000</td></tr>
+        <tr><td>Video Documentation & Feature Walkthroughs</td><td>₦5,000,000</td></tr>
+        <tr><td>E-Learning Platform Content</td><td>₦5,000,000</td></tr>
+        <tr class="total-row"><td>Total – Documentation</td><td>₦25,000,000</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div class="flag-divider"></div>
+
+<!-- CONTINGENCY -->
+<section class="section">
+  <div class="section-header reveal">
+    <span class="section-num">08 —</span>
+    <div>
+      <div class="section-title">Strategic Risk <span>& Contingency</span></div>
+      <div class="section-amount">₦50,000,000</div>
+    </div>
+  </div>
+  <div class="contig-grid reveal">
+    <div class="contig-item"><div class="c-title">Regulatory Changes</div><div class="c-desc">Changes during implementation phase</div></div>
+    <div class="contig-item"><div class="c-title">Scope Adjustments</div><div class="c-desc">Based on stakeholder feedback</div></div>
+    <div class="contig-item"><div class="c-title">Operational Risk</div><div class="c-desc">Political and operational mitigation</div></div>
+    <div class="contig-item"><div class="c-title">Technical Challenges</div><div class="c-desc">Unforeseen technical issues</div></div>
+    <div class="contig-item"><div class="c-title">Hardware Contingency</div><div class="c-desc">Replacement & warranty across 18 LGAs</div></div>
+  </div>
+</section>
+
+<div class="flag-divider"></div>
+
+<!-- TIMELINE -->
+<section class="section" id="timeline">
+  <div class="section-header reveal">
+    <span class="section-num">09 —</span>
+    <div>
+      <div class="section-title">Development <span>Timeline</span></div>
+    </div>
+  </div>
+  <div class="timeline reveal">
+    <div class="timeline-phase">
+      <div class="timeline-phase-title">Phase 1–2 · Foundation & Core Setup</div>
+      <div class="timeline-items">
+        <span class="timeline-tag">Team Mobilization</span>
+        <span class="timeline-tag">Requirements Finalization</span>
+        <span class="timeline-tag">System Architecture Design</span>
+        <span class="timeline-tag">AWS Infrastructure Setup</span>
+        <span class="timeline-tag">Dev Environment Setup</span>
+        <span class="timeline-tag">Core Database Design</span>
+        <span class="timeline-tag">API Architecture</span>
+        <span class="timeline-tag">Authentication System</span>
+        <span class="timeline-tag">Payment Gateway (Start)</span>
+        <span class="timeline-tag">USSD Gateway Setup</span>
+      </div>
+    </div>
+    <div class="timeline-phase">
+      <div class="timeline-phase-title">Phase 3–4 · Parallel Core Development</div>
+      <div class="timeline-items">
+        <span class="timeline-tag">Citizen Portal</span>
+        <span class="timeline-tag">Tax Calculation Engines</span>
+        <span class="timeline-tag">Payment Processing</span>
+        <span class="timeline-tag">Receipt Generation</span>
+        <span class="timeline-tag">USSD Menu System</span>
+        <span class="timeline-tag">MTN & Airtel Integration</span>
+        <span class="timeline-tag">Revenue Dashboard</span>
+        <span class="timeline-tag">Bank Integrations (Top 5)</span>
+        <span class="timeline-tag">SMS / Email Services</span>
+      </div>
+    </div>
+    <div class="timeline-phase">
+      <div class="timeline-phase-title">Phase 5–6 · Advanced Features & Integrations</div>
+      <div class="timeline-items">
+        <span class="timeline-tag">AI / ML Features</span>
+        <span class="timeline-tag">Business Tax Modules</span>
+        <span class="timeline-tag">Field Operations Tools</span>
+        <span class="timeline-tag">FIRS / CAC / NIMC Integration</span>
+        <span class="timeline-tag">Complete Bank Integrations (20+)</span>
+        <span class="timeline-tag">Glo & 9mobile USSD</span>
+        <span class="timeline-tag">Security Hardening</span>
+        <span class="timeline-tag">Performance Optimization</span>
+      </div>
+    </div>
+    <div class="timeline-phase">
+      <div class="timeline-phase-title">Phase 7–8 · Testing, Training & Go-Live</div>
+      <div class="timeline-items">
+        <span class="timeline-tag">Functional Testing</span>
+        <span class="timeline-tag">Security Audits</span>
+        <span class="timeline-tag">UAT with Government</span>
+        <span class="timeline-tag">LGA Hardware Deployment</span>
+        <span class="timeline-tag">Staff Training (All Tiers)</span>
+        <span class="timeline-tag">Pilot Launch</span>
+        <span class="timeline-tag">Public Launch</span>
+        <span class="timeline-tag">Final Delivery & Handover</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="flag-divider"></div>
+
+<!-- PAYMENT SCHEDULE -->
+<section class="section" id="payment">
+  <div class="section-header reveal">
+    <span class="section-num">10 —</span>
+    <div>
+      <div class="section-title">Payment <span>Schedule</span></div>
+      <div class="section-amount">₦1,700,000,000 · 2 Milestones</div>
+    </div>
+  </div>
+
+  <div class="payment-wrap reveal">
+    <div class="payment-card signing">
+      <div class="payment-when">Day 1</div>
+      <div class="payment-badge">Milestone 01</div>
+      <div class="payment-name">Contract Signing</div>
+      <div class="payment-percent">85%</div>
+      <div class="payment-amount">₦1,445,000,000</div>
+    </div>
+    <div class="payment-card golive">
+      <div class="payment-when">On Delivery</div>
+      <div class="payment-badge">Milestone 02</div>
+      <div class="payment-name">Successful Go-Live & Delivery</div>
+      <div class="payment-percent">15%</div>
+      <div class="payment-amount">₦255,000,000</div>
+    </div>
+  </div>
+
+  <div class="table-wrap reveal" style="margin-top:24px;">
+    <table>
+      <thead>
+        <tr><th>Milestone</th><th>Trigger</th><th>%</th><th>Amount</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Contract Signing</td>
+          <td style="font-family:'DM Mono',monospace;font-size:12px;color:var(--text-dim);">Day 1</td>
+          <td style="font-family:'DM Mono',monospace;color:var(--green-mid);font-weight:700;">85%</td>
+          <td>₦1,445,000,000</td>
+        </tr>
+        <tr>
+          <td>
+            Successful Go-Live & Delivery
+            <br><small style="color:var(--text-dim);font-size:11px;font-family:'DM Mono',monospace;">All features deployed · Training completed · System live & stable · Documentation delivered</small>
+          </td>
+          <td style="font-family:'DM Mono',monospace;font-size:12px;color:var(--text-dim);">On Delivery</td>
+          <td style="font-family:'DM Mono',monospace;color:var(--green-light);font-weight:700;">15%</td>
+          <td>₦255,000,000</td>
+        </tr>
+        <tr class="total-row">
+          <td>Grand Total</td>
+          <td></td>
+          <td>100%</td>
+          <td>₦1,700,000,000</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div class="flag-divider"></div>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-brand">ACE CRE8IVE <span>TECH</span> AGENCY</div>
+    <div class="footer-contact" style="margin-top:10px;">
+      <a href="mailto:info@acecre8iveagency.com">info@acecre8iveagency.com</a>
+      &nbsp;·&nbsp; 08106626970
+    </div>
+    <div style="margin-top:8px;font-family:'DM Mono',monospace;font-size:10px;color:rgba(255,255,255,0.25);letter-spacing:0.15em;text-transform:uppercase;">Edo State Tax Revenue System · ₦1,700,000,000</div>
+  </div>
+  <div style="display:flex;flex-direction:column;align-items:flex-end;gap:16px;">
+    <div class="flag-strip" style="width:60px;height:36px;border-radius:4px;">
+      <div class="g"></div><div class="w"></div><div class="g"></div>
+    </div>
+    <button class="print-btn" onclick="window.print()">⎙ &nbsp;Print / Save PDF</button>
+  </div>
+</footer>
+
+<script>
+  // NAV TOGGLE
+  const toggle = document.getElementById('navToggle');
+  const links  = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+
+  // SCROLL REVEAL
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 70);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.07, rootMargin: '0px 0px -30px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // ACTIVE NAV LINK
+  const sections = document.querySelectorAll('section[id]');
+  const navAs    = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let cur = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 130) cur = s.id; });
+    navAs.forEach(a => {
+      const active = a.getAttribute('href') === '#' + cur;
+      a.classList.toggle('active', active);
+    });
+  }, { passive: true });
+</script>
 </body>
 </html>
